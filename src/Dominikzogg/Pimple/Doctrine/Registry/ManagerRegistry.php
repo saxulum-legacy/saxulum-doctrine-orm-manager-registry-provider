@@ -209,20 +209,14 @@ class ManagerRegistry implements ManagerRegistryInterface
      */
     public function getManagerForClass($class)
     {
-        // Check for namespace alias
-        if (strpos($class, ':') !== false) {
-            list($namespaceAlias, $simpleClassName) = explode(':', $class);
-            $class = $this->getAliasNamespace($namespaceAlias) . '\\' . $simpleClassName;
-        }
-
         $proxyClass = new \ReflectionClass($class);
         if ($proxyClass->implementsInterface($this->proxyInterfaceName)) {
             $class = $proxyClass->getParentClass()->getName();
         }
 
-        foreach ($this->getManagers() as $manager) {
-            if (!$manager->getMetadataFactory()->isTransient($class)) {
-                return $manager;
+        foreach($this->getManagerNames() as $managerName) {
+            if (!$this->getManager($managerName)->getMetadataFactory()->isTransient($class)) {
+                return $this->getManager($managerName);
             }
         }
     }
