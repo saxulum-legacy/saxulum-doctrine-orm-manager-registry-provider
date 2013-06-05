@@ -79,7 +79,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @return array
+     * @return \Pimple
      */
     public function getConnections()
     {
@@ -92,11 +92,7 @@ class ManagerRegistry implements ManagerRegistryInterface
      */
     public function getConnectionNames()
     {
-        $names = array();
-        foreach($this->getConnections() as $name => $connection) {
-            $names[] = $name;
-        }
-        return $names;
+        return $this->getConnections()->keys();
     }
 
     protected function loadConnections()
@@ -137,7 +133,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @return ObjectManager[]
+     * @return \Pimple
      */
     public function getManagers()
     {
@@ -150,11 +146,7 @@ class ManagerRegistry implements ManagerRegistryInterface
      */
     public function getManagerNames()
     {
-        $names = array();
-        foreach($this->getManagers() as $name => $manager) {
-            $names[] = $name;
-        }
-        return $names;
+        return $this->getManagers()->keys();
     }
 
     /**
