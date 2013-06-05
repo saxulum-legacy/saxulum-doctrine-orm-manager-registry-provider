@@ -1,6 +1,6 @@
 <?php
 
-namespace Dominikzogg\Cilex\Provider;
+namespace Dominikzogg\Silex\Provider;
 
 use Dominikzogg\Pimple\Provider\DoctrineOrmManagerRegistryProvider as PimpleDoctrineOrmManagerRegistryProvider;
 use Silex\Application;
