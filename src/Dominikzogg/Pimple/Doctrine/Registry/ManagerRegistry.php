@@ -184,13 +184,12 @@ class ManagerRegistry implements ManagerRegistryInterface
      */
     public function getAliasNamespace($alias)
     {
-        foreach (array_keys($this->getManagers()) as $name) {
+        foreach($this->getManagerNames() as $name) {
             try {
                 return $this->getManager($name)->getConfiguration()->getEntityNamespace($alias);
             } catch (ORMException $e) {
             }
         }
-
         throw ORMException::unknownEntityNamespace($alias);
     }
 
