@@ -4,6 +4,7 @@ namespace Dominikzogg\Pimple\Doctrine\Registry;
 
 use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistryInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\ORMException;
 
@@ -41,7 +42,7 @@ class ManagerRegistry implements ManagerRegistryInterface
 
     /**
      * @param \Pimple $container
-     * @param string $proxyInterfaceName
+     * @param string  $proxyInterfaceName
      */
     public function __construct(\Pimple $container, $proxyInterfaceName = 'Doctrine\ORM\Proxy\Proxy')
     {
@@ -55,11 +56,12 @@ class ManagerRegistry implements ManagerRegistryInterface
     public function getDefaultConnectionName()
     {
         $this->loadConnections();
+
         return $this->defaultConnectionName;
     }
 
     /**
-     * @param string|null $name
+     * @param  string|null               $name
      * @return Connection
      * @throws \InvalidArgumentException
      */
@@ -67,7 +69,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadConnections();
 
-        if($name === null) {
+        if ($name === null) {
             $name = $this->getDefaultConnectionName();
         }
 
@@ -84,6 +86,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     public function getConnections()
     {
         $this->loadConnections();
+
         return $this->connections;
     }
 
@@ -97,7 +100,7 @@ class ManagerRegistry implements ManagerRegistryInterface
 
     protected function loadConnections()
     {
-        if(is_null($this->connections)) {
+        if (is_null($this->connections)) {
             $this->connections = $this->container['dbs'];
             $this->defaultConnectionName = $this->container['dbs.default'];
         }
@@ -109,11 +112,12 @@ class ManagerRegistry implements ManagerRegistryInterface
     public function getDefaultManagerName()
     {
         $this->loadManagers();
+
         return $this->defaultManagerName;
     }
 
     /**
-     * @param null $name
+     * @param  null                      $name
      * @return ObjectManager
      * @throws \InvalidArgumentException
      */
@@ -121,7 +125,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadManagers();
 
-        if($name === null) {
+        if ($name === null) {
             $name = $this->getDefaultManagerName();
         }
 
@@ -138,6 +142,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     public function getManagers()
     {
         $this->loadManagers();
+
         return $this->managers;
     }
 
@@ -150,7 +155,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @param null $name
+     * @param  null                      $name
      * @return void
      * @throws \InvalidArgumentException
      */
@@ -171,20 +176,20 @@ class ManagerRegistry implements ManagerRegistryInterface
 
     protected function loadManagers()
     {
-        if(is_null($this->managers)) {
+        if (is_null($this->managers)) {
             $this->managers = $this->container['orm.ems'];
             $this->defaultManagerName = $this->container['orm.ems.default'];
         }
     }
 
     /**
-     * @param string $alias
+     * @param  string       $alias
      * @return string
-     * @throws \Doctrine\ORM\ORMException
+     * @throws ORMException
      */
     public function getAliasNamespace($alias)
     {
-        foreach($this->getManagerNames() as $name) {
+        foreach ($this->getManagerNames() as $name) {
             try {
                 return $this->getManager($name)->getConfiguration()->getEntityNamespace($alias);
             } catch (ORMException $e) {
@@ -194,9 +199,9 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @param string $persistentObject
-     * @param null $persistentManagerName
-     * @return \Doctrine\Common\Persistence\ObjectRepository
+     * @param  string           $persistentObject
+     * @param  null             $persistentManagerName
+     * @return ObjectRepository
      */
     public function getRepository($persistentObject, $persistentManagerName = null)
     {
@@ -204,8 +209,8 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @param string $class
-     * @return \Doctrine\Common\Persistence\ObjectManager|null
+     * @param  string             $class
+     * @return ObjectManager|null
      */
     public function getManagerForClass($class)
     {
@@ -214,7 +219,7 @@ class ManagerRegistry implements ManagerRegistryInterface
             $class = $proxyClass->getParentClass()->getName();
         }
 
-        foreach($this->getManagerNames() as $managerName) {
+        foreach ($this->getManagerNames() as $managerName) {
             if (!$this->getManager($managerName)->getMetadataFactory()->isTransient($class)) {
                 return $this->getManager($managerName);
             }
