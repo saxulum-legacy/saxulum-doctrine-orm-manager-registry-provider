@@ -15,9 +15,7 @@
         "dflydev/doctrine-orm-service-provider": "1.*@dev"
     },
     "require-dev": {
-        "cilex/cilex": "1.*@dev",
-        "silex/silex": "1.*@dev",
-        "cilex/console-service-provider": "@dev"
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "psr-0": {
