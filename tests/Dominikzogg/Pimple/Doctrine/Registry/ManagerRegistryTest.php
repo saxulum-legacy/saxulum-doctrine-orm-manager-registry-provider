@@ -78,12 +78,11 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
         $doctrineOrmManagerRegistryProvider = new DoctrineOrmManagerRegistryProvider();
         $doctrineOrmManagerRegistryProvider->register($app);
 
-        $this->assertEquals($app['doctrine']->getDefaultConnectionName(), 'default');
+        $this->assertEquals('default', $app['doctrine']->getDefaultConnectionName());
         $this->assertInstanceOf('Doctrine\DBAL\Connection', $app['doctrine']->getConnection());
         $this->assertInstanceOf('\Pimple', $app['doctrine']->getConnections());
         $this->assertCount(1, $app['doctrine']->getConnectionNames());
-
-        $this->assertEquals($app['doctrine']->getDefaultManagerName(), 'default');
+        $this->assertEquals('default', $app['doctrine']->getDefaultManagerName());
         $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManager());
         $this->assertInstanceOf('\Pimple', $app['doctrine']->getManagers());
         $this->assertCount(1, $app['doctrine']->getManagerNames());
