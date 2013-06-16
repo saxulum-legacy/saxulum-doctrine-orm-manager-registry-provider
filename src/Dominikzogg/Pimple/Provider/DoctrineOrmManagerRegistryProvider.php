@@ -2,7 +2,7 @@
 
 namespace Dominikzogg\Pimple\Provider;
 
-use Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistry;
+use Dominikzogg\Doctrine\Registry\ManagerRegistry;
 
 class DoctrineOrmManagerRegistryProvider
 {

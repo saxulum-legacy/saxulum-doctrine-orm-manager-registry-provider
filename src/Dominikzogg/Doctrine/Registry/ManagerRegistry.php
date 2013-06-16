@@ -1,6 +1,6 @@
 <?php
 
-namespace Dominikzogg\Pimple\Doctrine\Registry;
+namespace Dominikzogg\Doctrine\Registry;
 
 use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistryInterface;
 use Doctrine\Common\Persistence\ObjectManager;

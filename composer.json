@@ -24,6 +24,7 @@
     "autoload": {
         "psr-0": {
             "Dominikzogg\\Cilex": "src",
+            "Dominikzogg\\Doctrine": "src",
             "Dominikzogg\\Pimple": "src",
             "Dominikzogg\\Silex": "src"
         }

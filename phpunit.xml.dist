@@ -2,13 +2,13 @@
 <phpunit colors="true" bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="Doctrine ORM Registry Manager Provider Test Suite">
-            <directory>./tests/Dominikzogg/Pimple/Doctrine/Registry</directory>
+            <directory>./tests/Dominikzogg/Doctrine/Registry</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory>./src/Dominikzogg/Cilex/Provider/</directory>
-            <directory>./src/Dominikzogg/Pimple/Doctrine/Registry</directory>
+            <directory>./src/Dominikzogg/Doctrine/Registry</directory>
             <directory>./src/Dominikzogg/Pimple/Provider/</directory>
             <directory>./src/Dominikzogg/Silex/Provider/</directory>
         </whitelist>
