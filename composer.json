@@ -1,6 +1,6 @@
 {
-    "name": "dominikzogg/doctrine-orm-registry-manager-provider",
-    "description": "Doctrine ORM Registry Manager Provider",
+    "name": "dominikzogg/doctrine-orm-manager-registry-provider",
+    "description": "Doctrine ORM Manager Registry Provider",
     "keywords": ["pimple", "cilex", "silex", "doctrine", "orm", "registrymanager"],
     "license": "MIT",
     "authors": [
