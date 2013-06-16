@@ -42,8 +42,30 @@ Usage
 ```php
 <?php
 
-// Default entity manager.
-$app['doctrine']->getManager()
+// get the default connection name
+$app['doctrine']->getDefaultConnectionName();
+
+// get the default connection // get a named connection
+$app['doctrine']->getConnection(); // $app['doctrine']->getConnection('name');
+
+// all connections as array access (pimple)
+$app['doctrine']->getConnections();
+
+// all connection names as array
+$app['doctrine']->getConnectionNames();
+
+// get the default manager name
+$app['doctrine']->getDefaultManagerName();
+
+// get the default manager // get named manager
+$app['doctrine']->getManager(); // $app['doctrine']->getManager('name');
+
+// all manager as array access (pimple)
+$app['doctrine']->getManagers();
+
+// all manager names as array
+$app['doctrine']->getManagerNames();
+...
 ```
 
 [1]: http://silex.sensiolabs.org/doc/providers/doctrine.html
