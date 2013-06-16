@@ -45,8 +45,11 @@ Usage
 // get the default connection name
 $app['doctrine']->getDefaultConnectionName();
 
-// get the default connection // get a named connection
-$app['doctrine']->getConnection(); // $app['doctrine']->getConnection('name');
+// get the default connection 
+$app['doctrine']->getConnection();
+
+// get a connection by name
+$app['doctrine']->getConnection('name');
 
 // all connections as array access (pimple)
 $app['doctrine']->getConnections();
@@ -57,8 +60,11 @@ $app['doctrine']->getConnectionNames();
 // get the default manager name
 $app['doctrine']->getDefaultManagerName();
 
-// get the default manager // get named manager
-$app['doctrine']->getManager(); // $app['doctrine']->getManager('name');
+// get the default manager
+$app['doctrine']->getManager();
+
+// get a manager by name
+$app['doctrine']->getManager('name');
 
 // all manager as array access (pimple)
 $app['doctrine']->getManagers();
