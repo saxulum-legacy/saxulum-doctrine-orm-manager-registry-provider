@@ -87,6 +87,14 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadConnections();
 
+        if ($this->connections instanceof \Pimple) {
+            $connections = array();
+            foreach ($this->getConnectionNames() as $name) {
+                $connections[$name] = $this->connections[$name];
+            }
+            $this->connections = $connections;
+        }
+
         return $this->connections;
     }
 
@@ -97,16 +105,17 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadConnections();
 
-        return array_keys($this->connections);
+        if ($this->connections instanceof \Pimple) {
+            return $this->connections->keys();
+        } else {
+            return array_keys($this->connections);
+        }
     }
 
     protected function loadConnections()
     {
         if (is_null($this->connections)) {
-            $this->connections = array();
-            foreach ($this->container['dbs']->keys() as $name) {
-                $this->connections[$name] = $this->container['dbs']->raw($name);
-            }
+            $this->connections = $this->container['dbs'];
             $this->defaultConnectionName = $this->container['dbs.default'];
         }
     }
@@ -148,6 +157,14 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadManagers();
 
+        if ($this->managers instanceof \Pimple) {
+            $managers = array();
+            foreach ($this->getManagerNames() as $name) {
+                $managers[$name] = $this->managers[$name];
+            }
+            $this->managers = $managers;
+        }
+
         return $this->managers;
     }
 
@@ -158,7 +175,11 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadManagers();
 
-        return array_keys($this->managers);
+        if ($this->managers instanceof \Pimple) {
+            return $this->managers->keys();
+        } else {
+            return array_keys($this->managers);
+        }
     }
 
     /**
@@ -184,10 +205,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     protected function loadManagers()
     {
         if (is_null($this->managers)) {
-            $this->managers = array();
-            foreach ($this->container['orm.ems']->keys() as $name) {
-                $this->managers[$name] = $this->container['orm.ems']->raw($name);
-            }
+            $this->managers = $this->container['orm.ems'];
             $this->defaultManagerName = $this->container['orm.ems.default'];
         }
     }
@@ -236,4 +254,3 @@ class ManagerRegistry implements ManagerRegistryInterface
         }
     }
 }
-
