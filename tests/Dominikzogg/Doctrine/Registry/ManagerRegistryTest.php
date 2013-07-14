@@ -80,14 +80,15 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('default', $app['doctrine']->getDefaultConnectionName());
         $this->assertInstanceOf('Doctrine\DBAL\Connection', $app['doctrine']->getConnection());
-        $this->assertInstanceOf('\Pimple', $app['doctrine']->getConnections());
+        $this->assertCount(1, $app['doctrine']->getConnections());
         $this->assertCount(1, $app['doctrine']->getConnectionNames());
         $this->assertEquals('default', $app['doctrine']->getDefaultManagerName());
         $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManager());
-        $this->assertInstanceOf('\Pimple', $app['doctrine']->getManagers());
+        $this->assertCount(1, $app['doctrine']->getManagers());
         $this->assertCount(1, $app['doctrine']->getManagerNames());
         $this->assertEquals($app['doctrine']->getAliasNamespace('Test'), 'Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest');
         $this->assertInstanceOf('Doctrine\Common\Persistence\ObjectRepository', $app['doctrine']->getRepository('Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest'));
         $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManagerForClass('Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest'));
     }
 }
+
