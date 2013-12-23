@@ -2,6 +2,8 @@ doctrine-orm-manager-registry-provider
 ======================================
 
 [![Build Status](https://api.travis-ci.org/dominikzogg/doctrine-orm-manager-registry-provider.png?branch=master)](https://travis-ci.org/dominikzogg/doctrine-orm-manager-registry-provider)
+[![Total Downloads](https://poser.pugx.org/dominikzogg/doctrine-orm-manager-registry-provider/downloads.png)](https://packagist.org/packages/dominikzogg/doctrine-orm-manager-registry-provider)
+[![Latest Stable Version](https://poser.pugx.org/dominikzogg/doctrine-orm-manager-registry-provider/v/stable.png)](https://packagist.org/packages/dominikzogg/doctrine-orm-manager-registry-provider)
 
 Features
 --------
