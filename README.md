@@ -27,15 +27,7 @@ Installation
 Through [Composer](http://getcomposer.org) as [dominikzogg/doctrine-orm-manager-registry-provider][6].
 
 ```php
-
 $app->register(new Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider());
-
-// register the form extension of the doctrine bridge
-$app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions, $app) {
-    $extensions[] = new Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension($app['doctrine']);
-
-    return $extensions;
-}));
 ```
 
 Usage

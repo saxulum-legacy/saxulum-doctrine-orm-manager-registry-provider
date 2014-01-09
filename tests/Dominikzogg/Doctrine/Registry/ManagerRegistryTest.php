@@ -91,4 +91,3 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManagerForClass('Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest'));
     }
 }
-
