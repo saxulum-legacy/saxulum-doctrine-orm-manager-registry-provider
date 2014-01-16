@@ -27,7 +27,7 @@ class DoctrineOrmManagerRegistryProvider
             return new ManagerRegistry($container);
         });
 
-        if (isset($container['form.extensions']) &&class_exists('Symfony\\Bridge\\Doctrine\\Form\\DoctrineOrmExtension')) {
+        if (isset($container['form.extensions']) && class_exists('Symfony\\Bridge\\Doctrine\\Form\\DoctrineOrmExtension')) {
             $container['form.extensions'] = $container->share(
                 $container->extend('form.extensions', function ($extensions, $container) {
                     $extensions[] = new DoctrineOrmExtension($container['doctrine']);
@@ -37,7 +37,7 @@ class DoctrineOrmManagerRegistryProvider
             );
         }
 
-        if (isset($container['console.commands'])) {
+        if (isset($container['console.commands']) && class_exists('Saxulum\\DoctrineOrmCommands\\Command\\CreateDatabaseDoctrineCommand')) {
             $container['console.commands'] = $container->share(
                 $container->extend('console.commands', function ($commands) use ($container) {
                     $commands[] = new CreateDatabaseDoctrineCommand(null, $container['doctrine']);
