@@ -39,37 +39,40 @@ class DoctrineOrmManagerRegistryProvider
             );
         }
 
-        if (isset($container['console.commands']) && class_exists('Saxulum\\DoctrineOrmCommands\\Command\\CreateDatabaseDoctrineCommand')) {
-            $container['console'] = $container->share(
-                $container->extend('console', function (ConsoleApplication $consoleApplication) use ($container) {
-                    $consoleApplication->setAutoExit(false);
-                    $helperSet = $consoleApplication->getHelperSet();
-                    $helperSet->set(new ManagerRegistryHelper($container['doctrine']), 'doctrine');
+        if (class_exists('Saxulum\\DoctrineOrmCommands\\Command\\CreateDatabaseDoctrineCommand')) {
+            if (isset($container['console'])) {
+                $container['console'] = $container->share(
+                    $container->extend('console', function (ConsoleApplication $consoleApplication) use ($container) {
+                        $helperSet = $consoleApplication->getHelperSet();
+                        $helperSet->set(new ManagerRegistryHelper($container['doctrine']), 'doctrine');
 
-                    return $consoleApplication;
-                })
-            );
+                        return $consoleApplication;
+                    })
+                );
+            }
 
-            $container['console.commands'] = $container->share(
-                $container->extend('console.commands', function ($commands) use ($container) {
-                    $commands[] = new CreateDatabaseDoctrineCommand;
-                    $commands[] = new DropDatabaseDoctrineCommand;
-                    $commands[] = new CreateSchemaDoctrineCommand;
-                    $commands[] = new UpdateSchemaDoctrineCommand;
-                    $commands[] = new DropSchemaDoctrineCommand;
-                    $commands[] = new RunDqlDoctrineCommand;
-                    $commands[] = new RunSqlDoctrineCommand;
-                    $commands[] = new ConvertMappingDoctrineCommand;
-                    $commands[] = new ClearMetadataCacheDoctrineCommand;
-                    $commands[] = new ClearQueryCacheDoctrineCommand;
-                    $commands[] = new ClearResultCacheDoctrineCommand;
-                    $commands[] = new InfoDoctrineCommand;
-                    $commands[] = new ValidateSchemaCommand;
-                    $commands[] = new EnsureProductionSettingsDoctrineCommand;
+            if (isset($container['console.commands'])) {
+                $container['console.commands'] = $container->share(
+                    $container->extend('console.commands', function ($commands) use ($container) {
+                        $commands[] = new CreateDatabaseDoctrineCommand;
+                        $commands[] = new DropDatabaseDoctrineCommand;
+                        $commands[] = new CreateSchemaDoctrineCommand;
+                        $commands[] = new UpdateSchemaDoctrineCommand;
+                        $commands[] = new DropSchemaDoctrineCommand;
+                        $commands[] = new RunDqlDoctrineCommand;
+                        $commands[] = new RunSqlDoctrineCommand;
+                        $commands[] = new ConvertMappingDoctrineCommand;
+                        $commands[] = new ClearMetadataCacheDoctrineCommand;
+                        $commands[] = new ClearQueryCacheDoctrineCommand;
+                        $commands[] = new ClearResultCacheDoctrineCommand;
+                        $commands[] = new InfoDoctrineCommand;
+                        $commands[] = new ValidateSchemaCommand;
+                        $commands[] = new EnsureProductionSettingsDoctrineCommand;
 
-                    return $commands;
-                })
-            );
+                        return $commands;
+                    })
+                );
+            }
         }
     }
 }
