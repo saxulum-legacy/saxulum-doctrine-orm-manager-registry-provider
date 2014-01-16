@@ -17,7 +17,9 @@ use Saxulum\DoctrineOrmCommands\Command\Proxy\RunDqlDoctrineCommand;
 use Saxulum\DoctrineOrmCommands\Command\Proxy\RunSqlDoctrineCommand;
 use Saxulum\DoctrineOrmCommands\Command\Proxy\UpdateSchemaDoctrineCommand;
 use Saxulum\DoctrineOrmCommands\Command\Proxy\ValidateSchemaCommand;
+use Saxulum\DoctrineOrmCommands\Helper\ManagerRegistryHelper;
 use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
+use Symfony\Component\Console\Application as ConsoleApplication;
 
 class DoctrineOrmManagerRegistryProvider
 {
@@ -38,22 +40,32 @@ class DoctrineOrmManagerRegistryProvider
         }
 
         if (isset($container['console.commands']) && class_exists('Saxulum\\DoctrineOrmCommands\\Command\\CreateDatabaseDoctrineCommand')) {
+            $container['console'] = $container->share(
+                $container->extend('console', function (ConsoleApplication $consoleApplication) use ($container) {
+                    $consoleApplication->setAutoExit(false);
+                    $helperSet = $consoleApplication->getHelperSet();
+                    $helperSet->set(new ManagerRegistryHelper($container['doctrine']), 'doctrine');
+
+                    return $consoleApplication;
+                })
+            );
+
             $container['console.commands'] = $container->share(
                 $container->extend('console.commands', function ($commands) use ($container) {
-                    $commands[] = new CreateDatabaseDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new DropDatabaseDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new CreateSchemaDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new UpdateSchemaDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new DropSchemaDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new RunDqlDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new RunSqlDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new ConvertMappingDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new ClearMetadataCacheDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new ClearQueryCacheDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new ClearResultCacheDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new InfoDoctrineCommand(null, $container['doctrine']);
-                    $commands[] = new ValidateSchemaCommand(null, $container['doctrine']);
-                    $commands[] = new EnsureProductionSettingsDoctrineCommand(null, $container['doctrine']);
+                    $commands[] = new CreateDatabaseDoctrineCommand;
+                    $commands[] = new DropDatabaseDoctrineCommand;
+                    $commands[] = new CreateSchemaDoctrineCommand;
+                    $commands[] = new UpdateSchemaDoctrineCommand;
+                    $commands[] = new DropSchemaDoctrineCommand;
+                    $commands[] = new RunDqlDoctrineCommand;
+                    $commands[] = new RunSqlDoctrineCommand;
+                    $commands[] = new ConvertMappingDoctrineCommand;
+                    $commands[] = new ClearMetadataCacheDoctrineCommand;
+                    $commands[] = new ClearQueryCacheDoctrineCommand;
+                    $commands[] = new ClearResultCacheDoctrineCommand;
+                    $commands[] = new InfoDoctrineCommand;
+                    $commands[] = new ValidateSchemaCommand;
+                    $commands[] = new EnsureProductionSettingsDoctrineCommand;
 
                     return $commands;
                 })
