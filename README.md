@@ -26,7 +26,7 @@ Installation
  
 Through [Composer](http://getcomposer.org) as [dominikzogg/doctrine-orm-manager-registry-provider][6].
 
-``` {*.php}
+```{.php}
 use Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 
 $app->register(new DoctrineOrmManagerRegistryProvider());
@@ -36,12 +36,12 @@ $app->register(new DoctrineOrmManagerRegistryProvider());
 
 If you like to have `Entity` Type Support within [Symfony Form Component][5], install the [Doctrine Bridge][4] and register the form provider first.
 
-``` {*.json}
+```{.json}
 "symfony/doctrine-bridge": "~2.2",
 "symfony/form": "~2.2"
 ```
 
-``` {*.php}
+```{.php}
 use Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Silex\Provider\FormServiceProvider;
 
@@ -53,12 +53,12 @@ $app->register(new DoctrineOrmManagerRegistryProvider());
 
 If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Console][7] and the [Saxulum Console Provider][8] and register the console provider.
 
-``` {*.json}
+```{.json}
 "saxulum-doctrine-orm-commands": "~1.0.0",
 "saxulum/saxulum-console": "~1.1.1",
 ```
 
-``` {*.php}
+```{.php}
 use Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 
@@ -69,7 +69,7 @@ $app->register(new DoctrineOrmManagerRegistryProvider());
 Usage
 -----
 
-```php
+```{.php}
 <?php
 
 // get the default connection name
