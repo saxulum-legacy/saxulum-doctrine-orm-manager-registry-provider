@@ -18,8 +18,8 @@
         "phpunit/phpunit": "3.7.*"
     },
     "suggest": {
-        "symfony/doctrine-bridge": ">=2.2,<3.0",
-        "symfony/form": ">=2.2,<3.0",
+        "symfony/doctrine-bridge": "~2.2",
+        "symfony/form": "~2.2",
         "saxulum/console": "~1.1.1",
         "saxulum/saxulum-doctrine-orm-commands": "~1.0.0"
     },
