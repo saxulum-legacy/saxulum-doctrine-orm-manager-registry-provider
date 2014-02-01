@@ -20,7 +20,7 @@
     "suggest": {
         "symfony/doctrine-bridge": "~2.2",
         "symfony/form": "~2.2",
-        "saxulum/console": "~1.1.1",
+        "saxulum/saxulum-console": "~1.2",
         "saxulum/saxulum-doctrine-orm-commands": "~1.0.0"
     },
     "autoload": {
