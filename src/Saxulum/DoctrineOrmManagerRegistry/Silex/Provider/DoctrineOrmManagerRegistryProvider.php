@@ -1,10 +1,10 @@
 <?php
 
-namespace Dominikzogg\Cilex\Provider;
+namespace Saxulum\DoctrineOrmManagerRegistry\Silex\Provider;
 
-use Dominikzogg\Pimple\Provider\DoctrineOrmManagerRegistryProvider as PimpleDoctrineOrmManagerRegistryProvider;
-use Cilex\Application;
-use Cilex\ServiceProviderInterface;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider as PimpleDoctrineOrmManagerRegistryProvider;
+use Silex\Application;
+use Silex\ServiceProviderInterface;
 
 class DoctrineOrmManagerRegistryProvider implements ServiceProviderInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Dominikzogg\Pimple\Provider;
+namespace Saxulum\DoctrineOrmManagerRegistry\Provider;
 
-use Dominikzogg\Doctrine\Registry\ManagerRegistry;
+use Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry;
 use Saxulum\DoctrineOrmCommands\Command\CreateDatabaseDoctrineCommand;
 use Saxulum\DoctrineOrmCommands\Command\DropDatabaseDoctrineCommand;
 use Saxulum\DoctrineOrmCommands\Command\Proxy\ClearMetadataCacheDoctrineCommand;

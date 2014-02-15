@@ -1,6 +1,6 @@
 <?php
 
-namespace Dominikzogg\Doctrine\Registry;
+namespace Saxulum\DoctrineOrmManagerRegistry\Doctrine;
 
 use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistryInterface;
 use Doctrine\Common\Persistence\ObjectManager;

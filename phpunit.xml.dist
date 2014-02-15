@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true" bootstrap="vendor/autoload.php">
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="false"
+         bootstrap="tests/bootstrap.php"
+        >
     <testsuites>
-        <testsuite name="Doctrine ORM Registry Manager Provider Test Suite">
-            <directory>./tests/Dominikzogg/Doctrine/Registry</directory>
+        <testsuite name="Saxulum Doctrine ORM Manager Registry Provider">
+            <directory>./tests/Saxulum/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>./src/Dominikzogg/Cilex/Provider/</directory>
-            <directory>./src/Dominikzogg/Doctrine/Registry</directory>
-            <directory>./src/Dominikzogg/Pimple/Provider/</directory>
-            <directory>./src/Dominikzogg/Silex/Provider/</directory>
+            <directory>./src</directory>
         </whitelist>
     </filter>
 </phpunit>

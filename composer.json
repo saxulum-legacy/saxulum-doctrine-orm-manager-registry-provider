@@ -1,6 +1,6 @@
 {
-    "name": "dominikzogg/doctrine-orm-manager-registry-provider",
-    "description": "Doctrine ORM Manager Registry Provider",
+    "name": "saxulum/saxulum-doctrine-orm-manager-registry-provider",
+    "description": "Saxulum Doctrine ORM Manager Registry Provider",
     "keywords": ["pimple", "cilex", "silex", "doctrine", "orm", "registrymanager"],
     "license": "MIT",
     "authors": [
@@ -24,11 +24,6 @@
         "saxulum/saxulum-doctrine-orm-commands": "~1.0.0"
     },
     "autoload": {
-        "psr-0": {
-            "Dominikzogg\\Cilex": "src",
-            "Dominikzogg\\Doctrine": "src",
-            "Dominikzogg\\Pimple": "src",
-            "Dominikzogg\\Silex": "src"
-        }
+        "psr-0": { "Saxulum\\DoctrineOrmManagerRegistry": "src/" }
     }
 }

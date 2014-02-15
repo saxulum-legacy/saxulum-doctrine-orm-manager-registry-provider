@@ -1,9 +1,9 @@
-doctrine-orm-manager-registry-provider
-======================================
+saxulum/saxulum-doctrine-orm-manager-registry-provider
+======================================================
 
-[![Build Status](https://api.travis-ci.org/dominikzogg/doctrine-orm-manager-registry-provider.png?branch=master)](https://travis-ci.org/dominikzogg/doctrine-orm-manager-registry-provider)
-[![Total Downloads](https://poser.pugx.org/dominikzogg/doctrine-orm-manager-registry-provider/downloads.png)](https://packagist.org/packages/dominikzogg/doctrine-orm-manager-registry-provider)
-[![Latest Stable Version](https://poser.pugx.org/dominikzogg/doctrine-orm-manager-registry-provider/v/stable.png)](https://packagist.org/packages/dominikzogg/doctrine-orm-manager-registry-provider)
+[![Build Status](https://api.travis-ci.org/saxulum/saxulum-doctrine-orm-manager-registry-provider.png?branch=master)](https://travis-ci.org/saxulum/saxulum-doctrine-orm-manager-registry-provider)
+[![Total Downloads](https://poser.pugx.org/saxulum/saxulum-doctrine-orm-manager-registry-provider/downloads.png)](https://packagist.org/packages/saxulum/saxulum-doctrine-orm-manager-registry-provider)
+[![Latest Stable Version](https://poser.pugx.org/saxulum/saxulum-doctrine-orm-manager-registry-provider/v/stable.png)](https://packagist.org/packages/saxulum/saxulum-doctrine-orm-manager-registry-provider)
 
 Features
 --------
@@ -24,10 +24,10 @@ If you can or want to fake it, go for it. :)
 Installation
 ------------
  
-Through [Composer](http://getcomposer.org) as [dominikzogg/doctrine-orm-manager-registry-provider][6].
+Through [Composer](http://getcomposer.org) as [saxulum/saxulum-doctrine-orm-manager-registry-provider][6].
 
 ```{.php}
-use Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 
 $app->register(new DoctrineOrmManagerRegistryProvider());
 ```
@@ -42,7 +42,7 @@ If you like to have `Entity` Type Support within [Symfony Form Component][5], in
 ```
 
 ```{.php}
-use Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Silex\Provider\FormServiceProvider;
 
 $app->register(new FormServiceProvider());
@@ -59,7 +59,7 @@ If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Con
 ```
 
 ```{.php}
-use Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 
 $app->register(new ConsoleProvider());
@@ -106,9 +106,9 @@ $app['doctrine']->getManagerNames();
 
 [1]: http://silex.sensiolabs.org/doc/providers/doctrine.html
 [2]: https://github.com/Cilex/Cilex/blob/master/src/Cilex/Provider/DoctrineServiceProvider.php
-[3]: https://raw.github.com/dflydev/dflydev-doctrine-orm-service-provider
+[3]: https://github.com/dflydev/dflydev-doctrine-orm-service-provider
 [4]: https://github.com/symfony/DoctrineBridge
 [5]: https://github.com/symfony/Form
-[6]: https://packagist.org/packages/dominikzogg/doctrine-orm-manager-registry-provider
+[6]: https://packagist.org/packages/saxulum/saxulum-doctrine-orm-manager-registry-provider
 [7]: https://packagist.org/packages/saxulum/saxulum-doctrine-orm-commands
 [8]: https://packagist.org/packages/saxulum/saxulum-console

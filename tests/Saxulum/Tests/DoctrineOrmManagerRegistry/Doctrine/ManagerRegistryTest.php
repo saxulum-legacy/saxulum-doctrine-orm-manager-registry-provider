@@ -1,9 +1,9 @@
 <?php
 
-namespace Dominikzogg\Pimple\Doctrine\Registry;
+namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Doctrine;
 
 use Doctrine\ORM\EntityManager;
-use Dominikzogg\Pimple\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 
 class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,7 +31,7 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
         $configuration
             ->expects($this->any())
             ->method('getEntityNamespace')
-            ->will($this->returnValue('Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest'))
+            ->will($this->returnValue('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'))
         ;
 
         $repository = $this->getMock('Doctrine\Common\Persistence\ObjectRepository');
@@ -86,8 +86,8 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManager());
         $this->assertCount(1, $app['doctrine']->getManagers());
         $this->assertCount(1, $app['doctrine']->getManagerNames());
-        $this->assertEquals($app['doctrine']->getAliasNamespace('Test'), 'Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest');
-        $this->assertInstanceOf('Doctrine\Common\Persistence\ObjectRepository', $app['doctrine']->getRepository('Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest'));
-        $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManagerForClass('Dominikzogg\Pimple\Doctrine\Registry\ManagerRegistryTest'));
+        $this->assertEquals($app['doctrine']->getAliasNamespace('Test'), 'Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry');
+        $this->assertInstanceOf('Doctrine\Common\Persistence\ObjectRepository', $app['doctrine']->getRepository('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
+        $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManagerForClass('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
     }
 }
