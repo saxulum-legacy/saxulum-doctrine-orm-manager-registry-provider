@@ -23,6 +23,9 @@
         "saxulum/saxulum-console": "~1.2",
         "saxulum/saxulum-doctrine-orm-commands": "~1.0.0"
     },
+    "replace": {
+        "dominikzogg/doctrine-orm-manager-registry-provider":"~2"
+    },
     "autoload": {
         "psr-0": { "Saxulum\\DoctrineOrmManagerRegistry": "src/" }
     }
