@@ -60,8 +60,12 @@ $app->register(new DoctrineOrmManagerRegistryProvider());
 If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Console][7] and the [Saxulum Console Provider][8] and register the console provider.
 
 ```{.json}
-"saxulum-doctrine-orm-commands": "~1.0.0",
-"saxulum/saxulum-console": "~1.1.1",
+{
+    "require": {
+        "saxulum-doctrine-orm-commands": "~1.0.0",
+        "saxulum/saxulum-console": "~1.1.1",
+    }
+}
 ```
 
 ```{.php}
