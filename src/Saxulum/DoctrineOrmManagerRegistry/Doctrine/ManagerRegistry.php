@@ -221,6 +221,7 @@ class ManagerRegistry implements ManagerRegistryInterface
             try {
                 return $this->getManager($name)->getConfiguration()->getEntityNamespace($alias);
             } catch (ORMException $e) {
+                // throw the exception only if no manager can solve it
             }
         }
         throw ORMException::unknownEntityNamespace($alias);
