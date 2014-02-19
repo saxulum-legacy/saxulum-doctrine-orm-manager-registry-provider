@@ -28,6 +28,8 @@ Installation
 Through [Composer](http://getcomposer.org) as [saxulum/saxulum-doctrine-orm-manager-registry-provider][6].
 
 ```{.php}
+<?php
+
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 
 $app->register(new DoctrineOrmManagerRegistryProvider());
@@ -47,6 +49,8 @@ If you like to have `Entity` Type Support within [Symfony Form Component][5], in
 ```
 
 ```{.php}
+<?php
+
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Silex\Provider\FormServiceProvider;
 
@@ -68,6 +72,7 @@ If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Con
 ```
 
 ```{.php}
+<?php
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 
