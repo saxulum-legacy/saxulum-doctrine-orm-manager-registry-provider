@@ -73,6 +73,7 @@ If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Con
 
 ```{.php}
 <?php
+
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 
