@@ -38,8 +38,13 @@ $app->register(new DoctrineOrmManagerRegistryProvider());
 If you like to have `Entity` Type Support within [Symfony Form Component][5], install the [Doctrine Bridge][4] and register the form provider first.
 
 ```{.json}
-"symfony/doctrine-bridge": "~2.2",
-"symfony/form": "~2.2"
+{
+    "require": {
+        "symfony/doctrine-bridge": "~2.2",
+        "symfony/form": "~2.2"
+    }
+}
+
 ```
 
 ```{.php}
