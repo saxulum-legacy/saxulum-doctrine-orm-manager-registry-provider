@@ -44,7 +44,6 @@ If you like to have `Entity` Type Support within [Symfony Form Component][5], in
         "symfony/form": "~2.2"
     }
 }
-
 ```
 
 ```{.php}
