@@ -3,9 +3,9 @@
 namespace Saxulum\DoctrineOrmManagerRegistry\Doctrine;
 
 use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistryInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\ORMException;
 
 class ManagerRegistry implements ManagerRegistryInterface
@@ -26,7 +26,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     protected $defaultConnectionName;
 
     /**
-     * @var ObjectManager[]
+     * @var EntityManager[]
      */
     protected $managers;
 
@@ -81,7 +81,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @return array
+     * @return Connection[]
      */
     public function getConnections()
     {
@@ -132,7 +132,7 @@ class ManagerRegistry implements ManagerRegistryInterface
 
     /**
      * @param  null                      $name
-     * @return ObjectManager
+     * @return EntityManager
      * @throws \InvalidArgumentException
      */
     public function getManager($name = null)
@@ -151,7 +151,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @return array
+     * @return EntityManager[]
      */
     public function getManagers()
     {
@@ -229,7 +229,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     /**
      * @param  string           $persistentObject
      * @param  null             $persistentManagerName
-     * @return ObjectRepository
+     * @return EntityRepository
      */
     public function getRepository($persistentObject, $persistentManagerName = null)
     {
@@ -238,7 +238,7 @@ class ManagerRegistry implements ManagerRegistryInterface
 
     /**
      * @param  string             $class
-     * @return ObjectManager|null
+     * @return EntityManager|null
      */
     public function getManagerForClass($class)
     {
