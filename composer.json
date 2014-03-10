@@ -15,16 +15,21 @@
         "dflydev/doctrine-orm-service-provider": "~1.0.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "3.7.*"
-    },
-    "suggest": {
+        "phpunit/phpunit": "3.7.*",
+        "saxulum/saxulum-console": "~1.2",
+        "saxulum/saxulum-doctrine-orm-commands": "~1.0.0",
+        "silex/silex": "~1.1",
         "symfony/doctrine-bridge": "~2.2",
         "symfony/form": "~2.2",
-        "saxulum/saxulum-console": "~1.2",
-        "saxulum/saxulum-doctrine-orm-commands": "~1.0.0"
+        "symfony/validator": "~2.2"
     },
-    "replace": {
-        "dominikzogg/doctrine-orm-manager-registry-provider":"~2"
+    "suggest": {
+        "saxulum/saxulum-console": "~1.2",
+        "saxulum/saxulum-doctrine-orm-commands": "~1.0.0",
+        "silex/silex": "~1.1",
+        "symfony/doctrine-bridge": "~2.2",
+        "symfony/form": "~2.2",
+        "symfony/validator": "~2.2"
     },
     "autoload": {
         "psr-0": { "Saxulum\\DoctrineOrmManagerRegistry": "src/" }
