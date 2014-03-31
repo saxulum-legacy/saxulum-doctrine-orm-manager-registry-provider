@@ -58,29 +58,6 @@ $app->register(new FormServiceProvider());
 $app->register(new DoctrineOrmManagerRegistryProvider());
 ```
 
-### Doctrine ORM Console
-
-If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Console][7] and the [Saxulum Console Provider][8] and register the console provider.
-
-```{.json}
-{
-    "require": {
-        "saxulum-doctrine-orm-commands": "~1.0.0",
-        "saxulum/saxulum-console": "~1.1.1",
-    }
-}
-```
-
-```{.php}
-<?php
-
-use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
-use Saxulum\Console\Silex\Provider\ConsoleProvider;
-
-$app->register(new ConsoleProvider());
-$app->register(new DoctrineOrmManagerRegistryProvider());
-```
-
 ### Validator
 
 If you like to have `UniqueEntity` Constraint Support within [Symfony Validator Component][9], install the [Doctrine Bridge][4] and register the validator provider first.
@@ -134,6 +111,29 @@ class Sample
         )));
     }
 }
+```
+
+### Doctrine ORM Console
+
+If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Console][7] and the [Saxulum Console Provider][8] and register the console provider.
+
+```{.json}
+{
+    "require": {
+        "saxulum-doctrine-orm-commands": "~1.0.0",
+        "saxulum/saxulum-console": "~1.1.1",
+    }
+}
+```
+
+```{.php}
+<?php
+
+use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\Console\Silex\Provider\ConsoleProvider;
+
+$app->register(new ConsoleProvider());
+$app->register(new DoctrineOrmManagerRegistryProvider());
 ```
 
 Usage
