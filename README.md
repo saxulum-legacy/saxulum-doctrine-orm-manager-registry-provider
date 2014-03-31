@@ -81,6 +81,61 @@ $app->register(new ConsoleProvider());
 $app->register(new DoctrineOrmManagerRegistryProvider());
 ```
 
+### Validator
+
+If you like to have `UniqueEntity` Constraint Support within [Symfony Validator Component][9], install the [Doctrine Bridge][4] and register the validator provider first.
+
+```{.json}
+{
+    "require": {
+        "symfony/doctrine-bridge": "~2.2",
+        "symfony/validator": "~2.2"
+    }
+}
+```
+
+```{.php}
+<?php
+
+use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Silex\Provider\ValidatorServiceProvider;
+
+$app->register(new ValidatorServiceProvider());
+$app->register(new DoctrineOrmManagerRegistryProvider());
+```
+
+```{.php}
+<?php
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+
+/**
+ * @ORM\Entity()
+ * @ORM\Table(name="sample")
+ */
+class Sample
+{
+    /**
+     * @var string
+     * @ORM\Column(name="name", type="string")
+     */
+    protected $name;
+
+    /**
+     * @param ClassMetadata $metadata
+     */
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addConstraint(new UniqueEntity(array(
+            'fields'  => 'name',
+            'message' => 'This name already exists.',
+        )));
+    }
+}
+```
+
 Usage
 -----
 
@@ -127,3 +182,4 @@ $app['doctrine']->getManagerNames();
 [6]: https://packagist.org/packages/saxulum/saxulum-doctrine-orm-manager-registry-provider
 [7]: https://packagist.org/packages/saxulum/saxulum-doctrine-orm-commands
 [8]: https://packagist.org/packages/saxulum/saxulum-console
+[9]: https://github.com/symfony/Validator
