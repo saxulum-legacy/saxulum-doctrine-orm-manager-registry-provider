@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity()
- * @ORM\Table(name="page")
+ * @ORM\Table(name="sample")
  */
 class SampleEntity
 {
