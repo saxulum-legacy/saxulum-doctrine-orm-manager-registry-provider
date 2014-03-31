@@ -1,6 +1,6 @@
 <?php
 
-namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Sample\Entity;
+namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

@@ -6,7 +6,7 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
-use Saxulum\Tests\DoctrineOrmManagerRegistry\Sample\Entity\SampleEntity;
+use Saxulum\Tests\DoctrineOrmManagerRegistry\Entity\SampleEntity;
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
@@ -82,8 +82,8 @@ class DoctrineOrmManagerRegistryProviderTest extends WebTestCase
                 'mappings' => array(
                     array(
                         'type' => 'annotation',
-                        'namespace' => 'Saxulum\Tests\DoctrineOrmManagerRegistry\Sample\Entity',
-                        'path' => __DIR__.'/../../Sample/Entity',
+                        'namespace' => 'Saxulum\Tests\DoctrineOrmManagerRegistry\Entity',
+                        'path' => __DIR__.'/../../Entity',
                         'use_simple_annotation_reader' => false,
                     )
                 )
