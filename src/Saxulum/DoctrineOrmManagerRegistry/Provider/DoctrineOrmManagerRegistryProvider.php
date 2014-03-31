@@ -19,6 +19,8 @@ use Saxulum\DoctrineOrmCommands\Command\Proxy\UpdateSchemaDoctrineCommand;
 use Saxulum\DoctrineOrmCommands\Command\Proxy\ValidateSchemaCommand;
 use Saxulum\DoctrineOrmCommands\Helper\ManagerRegistryHelper;
 use Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
+use Symfony\Bridge\Doctrine\Validator\DoctrineInitializer;
 use Symfony\Component\Console\Application as ConsoleApplication;
 
 class DoctrineOrmManagerRegistryProvider
@@ -36,6 +38,31 @@ class DoctrineOrmManagerRegistryProvider
 
                     return $extensions;
                 })
+            );
+        }
+
+        if (isset($container['validator']) &&  class_exists('Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntityValidator')) {
+            $container['doctrine.orm.validator.unique_validator'] = $container->share(function ($container) {
+                return new UniqueEntityValidator($container['doctrine']);
+            });
+
+            if (!isset($container['validator.validator_service_ids'])) {
+                $container['validator.validator_service_ids'] = array();
+            }
+
+            $container['validator.validator_service_ids'] = array_merge(
+                $container['validator.validator_service_ids'],
+                array('doctrine.orm.validator.unique' => 'doctrine.orm.validator.unique_validator')
+            );
+
+            $container['validator.object_initializers'] = $container->share(
+                $container->extend('validator.object_initializers',
+                    function (array $objectInitializers) use ($container) {
+                        $objectInitializers[] = new DoctrineInitializer($container['doctrine']);
+
+                        return $objectInitializers;
+                    }
+                )
             );
         }
 
