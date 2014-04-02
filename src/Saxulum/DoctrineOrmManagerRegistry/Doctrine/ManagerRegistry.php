@@ -154,7 +154,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @param  \ArrayAccess              $data
+     * @param  array                     $data
      * @param  string                    $default
      * @param  string|null               $name
      * @return string
