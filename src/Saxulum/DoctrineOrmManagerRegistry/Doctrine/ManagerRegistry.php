@@ -69,13 +69,11 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadConnections();
 
-        if ($name === null) {
-            $name = $this->getDefaultConnectionName();
-        }
-
-        if (!isset($this->connections[$name])) {
-            throw new \InvalidArgumentException(sprintf('Doctrine Connection named "%s" does not exist.', $name));
-        }
+        $name = $this->validateName(
+            $this->connections,
+            $name,
+            $this->getDefaultConnectionName())
+        ;
 
         return $this->connections[$name];
     }
@@ -143,18 +141,33 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
+     * @param  string|null $name
+     * @return string
+     */
+    protected function validateManagerName($name)
+    {
+        return $this->validateName(
+            $this->managers,
+            $name,
+            $this->getDefaultManagerName())
+        ;
+    }
+
+    /**
+     * @param  \ArrayAccess              $data
+     * @param  string                    $default
      * @param  string|null               $name
      * @return string
      * @throws \InvalidArgumentException
      */
-    protected function validateManagerName($name)
+    protected function validateName($data, $name, $default)
     {
         if ($name === null) {
-            $name = $this->getDefaultManagerName();
+            $name = $default;
         }
 
-        if (!isset($this->managers[$name])) {
-            throw new \InvalidArgumentException(sprintf('Doctrine Manager named "%s" does not exist.', $name));
+        if (!isset($data[$name])) {
+            throw new \InvalidArgumentException(sprintf('Element named "%s" does not exist.', $name));
         }
 
         return $name;
