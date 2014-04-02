@@ -131,14 +131,24 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @param  null                      $name
+     * @param  string|null   $name
      * @return EntityManager
-     * @throws \InvalidArgumentException
      */
     public function getManager($name = null)
     {
         $this->loadManagers();
+        $name = $this->validateManagerName($name);
 
+        return $this->managers[$name];
+    }
+
+    /**
+     * @param  string|null               $name
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    protected function validateManagerName($name)
+    {
         if ($name === null) {
             $name = $this->getDefaultManagerName();
         }
@@ -147,7 +157,7 @@ class ManagerRegistry implements ManagerRegistryInterface
             throw new \InvalidArgumentException(sprintf('Doctrine Manager named "%s" does not exist.', $name));
         }
 
-        return $this->managers[$name];
+        return $name;
     }
 
     /**
@@ -183,21 +193,14 @@ class ManagerRegistry implements ManagerRegistryInterface
     }
 
     /**
-     * @param  null                      $name
+     * @param  string|null               $name
      * @return void
      * @throws \InvalidArgumentException
      */
     public function resetManager($name = null)
     {
         $this->loadManagers();
-
-        if (null === $name) {
-            $name = $this->getDefaultManagerName();
-        }
-
-        if (!isset($this->managers[$name])) {
-            throw new \InvalidArgumentException(sprintf('Doctrine Manager named "%s" does not exist.', $name));
-        }
+        $name = $this->validateManagerName($name);
 
         $this->managers[$name] = null;
     }
