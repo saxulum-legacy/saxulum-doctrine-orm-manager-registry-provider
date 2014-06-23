@@ -17,9 +17,10 @@ Requirements
 
  * PHP 5.3+
  * Doctrine ~2.3
+ * Pimple ~2.1
  
 Currently requires both **dbs** and **orm.ems** services in order to work.
-These can be provided by a Doctrine Service Provider like the [Silex][1] or [Cilex][2] and the Doctrine ORM Serice Provider like the [dflydev-doctrine-orm-service-provider][3] service providers.
+These can be provided by a Doctrine Service Provider like the [Silex][1] or [Cilex][2] and the Doctrine ORM Service Provider like the [dflydev-doctrine-orm-service-provider][3] service providers.
 If you can or want to fake it, go for it. :)
 
 Installation
@@ -30,7 +31,7 @@ Through [Composer](http://getcomposer.org) as [saxulum/saxulum-doctrine-orm-mana
 ```{.php}
 <?php
 
-use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 
 $app->register(new DoctrineOrmManagerRegistryProvider());
 ```
@@ -51,7 +52,7 @@ If you like to have `Entity` Type Support within [Symfony Form Component][5], in
 ```{.php}
 <?php
 
-use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 use Silex\Provider\FormServiceProvider;
 
 $app->register(new FormServiceProvider());
@@ -74,7 +75,7 @@ If you like to have `UniqueEntity` Constraint Support within [Symfony Validator 
 ```{.php}
 <?php
 
-use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 use Silex\Provider\ValidatorServiceProvider;
 
 $app->register(new ValidatorServiceProvider());
@@ -129,7 +130,7 @@ If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Con
 ```{.php}
 <?php
 
-use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
 
 $app->register(new ConsoleProvider());

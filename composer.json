@@ -1,7 +1,7 @@
 {
     "name": "saxulum/saxulum-doctrine-orm-manager-registry-provider",
     "description": "Saxulum Doctrine ORM Manager Registry Provider",
-    "keywords": ["pimple", "cilex", "silex", "doctrine", "orm", "registrymanager"],
+    "keywords": ["pimple", "silex", "doctrine", "orm", "managerregistry"],
     "license": "MIT",
     "authors": [
         {
@@ -11,25 +11,25 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "pimple/pimple": "~1.0",
-        "dflydev/doctrine-orm-service-provider": "~1.0.4"
+        "pimple/pimple": "~2.1@dev",
+        "dflydev/doctrine-orm-service-provider": "dev-master@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "3.7.*",
-        "saxulum/saxulum-console": "~2.0",
+        "phpunit/phpunit": "~4.1",
+        "saxulum/saxulum-console": "~3.0",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
-        "silex/silex": "~1.2",
-        "symfony/doctrine-bridge": "~2.2",
-        "symfony/form": "~2.2",
-        "symfony/validator": "~2.2"
+        "silex/silex": "dev-master@dev",
+        "symfony/doctrine-bridge": "~2.3",
+        "symfony/form": "~2.3",
+        "symfony/validator": "~2.3"
     },
     "suggest": {
-        "saxulum/saxulum-console": "~2.0",
+        "saxulum/saxulum-console": "~3.0",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
         "silex/silex": "~1.2",
-        "symfony/doctrine-bridge": "~2.2",
-        "symfony/form": "~2.2",
-        "symfony/validator": "~2.2"
+        "symfony/doctrine-bridge": "~2.3",
+        "symfony/form": "~2.3",
+        "symfony/validator": "~2.3"
     },
     "autoload": {
         "psr-0": { "Saxulum\\DoctrineOrmManagerRegistry": "src/" }

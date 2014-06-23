@@ -2,10 +2,10 @@
 
 namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Silex\Provider;
 
-use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Tests\DoctrineOrmManagerRegistry\Entity\SampleEntity;
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;

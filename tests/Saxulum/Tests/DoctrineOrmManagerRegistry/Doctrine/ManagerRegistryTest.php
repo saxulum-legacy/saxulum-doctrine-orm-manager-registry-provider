@@ -3,6 +3,7 @@
 namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Doctrine;
 
 use Doctrine\ORM\EntityManager;
+use Pimple\Container;
 use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 
 class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +13,7 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
      */
     protected function createMockDefaultAppAndDeps()
     {
-        $app = new \Pimple;
+        $container = new Container();
 
         $connection = $this
             ->getMockBuilder('Doctrine\DBAL\Connection')
@@ -20,11 +21,11 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
             ->getMock()
         ;
 
-        $app['dbs'] = new \Pimple(array(
+        $container['dbs'] = new Container(array(
             'default' => $connection,
         ));
 
-        $app['dbs.default'] = 'default';
+        $container['dbs.default'] = 'default';
 
         $configuration = $this->getMock('Doctrine\ORM\Configuration');
 
@@ -62,32 +63,32 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($metadataFactory))
         ;
 
-        $app['orm.ems'] = new \Pimple(array(
+        $container['orm.ems'] = new Container(array(
             'default' => $entityManager,
         ));
 
-        $app['orm.ems.default'] = 'default';
+        $container['orm.ems.default'] = 'default';
 
-        return $app;
+        return $container;
     }
 
     public function testRegisterDefaultImplementations()
     {
-        $app = $this->createMockDefaultAppAndDeps();
+        $container = $this->createMockDefaultAppAndDeps();
 
         $doctrineOrmManagerRegistryProvider = new DoctrineOrmManagerRegistryProvider();
-        $doctrineOrmManagerRegistryProvider->register($app);
+        $doctrineOrmManagerRegistryProvider->register($container);
 
-        $this->assertEquals('default', $app['doctrine']->getDefaultConnectionName());
-        $this->assertInstanceOf('Doctrine\DBAL\Connection', $app['doctrine']->getConnection());
-        $this->assertCount(1, $app['doctrine']->getConnections());
-        $this->assertCount(1, $app['doctrine']->getConnectionNames());
-        $this->assertEquals('default', $app['doctrine']->getDefaultManagerName());
-        $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManager());
-        $this->assertCount(1, $app['doctrine']->getManagers());
-        $this->assertCount(1, $app['doctrine']->getManagerNames());
-        $this->assertEquals($app['doctrine']->getAliasNamespace('Test'), 'Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry');
-        $this->assertInstanceOf('Doctrine\Common\Persistence\ObjectRepository', $app['doctrine']->getRepository('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
-        $this->assertInstanceOf('Doctrine\ORM\EntityManager', $app['doctrine']->getManagerForClass('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
+        $this->assertEquals('default', $container['doctrine']->getDefaultConnectionName());
+        $this->assertInstanceOf('Doctrine\DBAL\Connection', $container['doctrine']->getConnection());
+        $this->assertCount(1, $container['doctrine']->getConnections());
+        $this->assertCount(1, $container['doctrine']->getConnectionNames());
+        $this->assertEquals('default', $container['doctrine']->getDefaultManagerName());
+        $this->assertInstanceOf('Doctrine\ORM\EntityManager', $container['doctrine']->getManager());
+        $this->assertCount(1, $container['doctrine']->getManagers());
+        $this->assertCount(1, $container['doctrine']->getManagerNames());
+        $this->assertEquals($container['doctrine']->getAliasNamespace('Test'), 'Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry');
+        $this->assertInstanceOf('Doctrine\Common\Persistence\ObjectRepository', $container['doctrine']->getRepository('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
+        $this->assertInstanceOf('Doctrine\ORM\EntityManager', $container['doctrine']->getManagerForClass('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
     }
 }
