@@ -18,7 +18,8 @@
         "phpunit/phpunit": "~4.1",
         "saxulum/saxulum-console": "~3.0",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
-        "silex/silex": "dev-master@dev",
+        "silex/api": "2.0.*@dev",
+        "silex/providers": "2.0.*@dev",
         "symfony/doctrine-bridge": "~2.3",
         "symfony/form": "~2.3",
         "symfony/validator": "~2.3"
@@ -26,7 +27,6 @@
     "suggest": {
         "saxulum/saxulum-console": "~3.0",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
-        "silex/silex": "~1.2",
         "symfony/doctrine-bridge": "~2.3",
         "symfony/form": "~2.3",
         "symfony/validator": "~2.3"

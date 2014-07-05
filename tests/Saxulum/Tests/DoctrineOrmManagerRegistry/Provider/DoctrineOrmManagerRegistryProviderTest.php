@@ -1,19 +1,18 @@
 <?php
 
-namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Silex\Provider;
+namespace Saxulum\Tests\DoctrineOrmManagerRegistry\Provider;
 
 use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
+use Pimple\Container;
 use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Tests\DoctrineOrmManagerRegistry\Entity\SampleEntity;
-use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
-use Silex\WebTestCase;
 use Symfony\Component\Validator\Validator;
 
-class DoctrineOrmManagerRegistryProviderTest extends WebTestCase
+class DoctrineOrmManagerRegistryProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function testSchema()
     {
@@ -66,7 +65,7 @@ class DoctrineOrmManagerRegistryProviderTest extends WebTestCase
 
     public function createApplication()
     {
-        $app = new Application();
+        $app = new Container();
         $app['debug'] = true;
 
         $app->register(new ValidatorServiceProvider());
@@ -83,7 +82,7 @@ class DoctrineOrmManagerRegistryProviderTest extends WebTestCase
                     array(
                         'type' => 'annotation',
                         'namespace' => 'Saxulum\Tests\DoctrineOrmManagerRegistry\Entity',
-                        'path' => __DIR__.'/../../Entity',
+                        'path' => __DIR__.'/../Entity',
                         'use_simple_annotation_reader' => false,
                     )
                 )
@@ -135,7 +134,7 @@ class DoctrineOrmManagerRegistryProviderTest extends WebTestCase
      */
     protected function getCacheDir()
     {
-        $cacheDir =  __DIR__ . '/../../../../../../cache';
+        $cacheDir =  __DIR__ . '/../../../../../cache';
 
         if (!is_dir($cacheDir)) {
             mkdir($cacheDir, 0777, true);
