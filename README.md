@@ -121,7 +121,7 @@ If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Con
 ```{.json}
 {
     "require": {
-        "saxulum-doctrine-orm-commands": "~1.0.0",
+        "saxulum/saxulum-doctrine-orm-commands": "~1.0.0",
         "saxulum/saxulum-console": "~1.1.1",
     }
 }
