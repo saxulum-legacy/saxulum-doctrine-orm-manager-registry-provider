@@ -28,6 +28,10 @@ Installation
  
 Through [Composer](http://getcomposer.org) as [saxulum/saxulum-doctrine-orm-manager-registry-provider][6].
 
+```{.sh}
+composer require "saxulum/saxulum-doctrine-orm-manager-registry-provider": "~3.0"
+```
+
 ```{.php}
 <?php
 
