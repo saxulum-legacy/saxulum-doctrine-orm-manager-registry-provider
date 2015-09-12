@@ -135,7 +135,7 @@ class DoctrineOrmManagerRegistryProviderTest extends WebTestCase
      */
     protected function getCacheDir()
     {
-        $cacheDir =  __DIR__ . '/../../../../../../cache';
+        $cacheDir =  __DIR__ . '/../../../../cache';
 
         if (!is_dir($cacheDir)) {
             mkdir($cacheDir, 0777, true);

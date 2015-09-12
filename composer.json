@@ -32,6 +32,6 @@
         "symfony/validator": "~2.2"
     },
     "autoload": {
-        "psr-0": { "Saxulum\\DoctrineOrmManagerRegistry": "src/" }
+        "psr-4": { "Saxulum\\DoctrineOrmManagerRegistry\\": "src/" }
     }
 }

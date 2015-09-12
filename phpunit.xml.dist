@@ -12,7 +12,7 @@
         >
     <testsuites>
         <testsuite name="Saxulum Doctrine ORM Manager Registry Provider">
-            <directory>./tests/Saxulum/</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
