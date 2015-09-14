@@ -24,7 +24,7 @@
         "symfony/validator": "~2.2"
     },
     "suggest": {
-        "saxulum/saxulum-console": "~2.0",
+        "saxulum/saxulum-console": "~2.2",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
         "silex/silex": "~1.2",
         "symfony/doctrine-bridge": "~2.2",
