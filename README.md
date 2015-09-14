@@ -121,7 +121,7 @@ class Sample
 
 ### Doctrine ORM Console
 
-If you like to use [Doctrine ORM Console][7] commands, install [Doctrine ORM Console][7] and the [Saxulum Console Provider][8] and register the console provider.
+If you like to use [Doctrine ORM Commands][7], install [Doctrine ORM Commands][7] and the [Saxulum Console Provider][8] and register the console provider.
 
 ```{.json}
 {
