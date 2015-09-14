@@ -126,8 +126,8 @@ If you like to use [Doctrine ORM Commands][7], install [Doctrine ORM Commands][7
 ```{.json}
 {
     "require": {
-        "saxulum/saxulum-doctrine-orm-commands": "~1.0.0",
-        "saxulum/saxulum-console": "~1.1.1",
+        "saxulum/saxulum-doctrine-orm-commands": "~1.2,>=1.2.2",
+        "saxulum/saxulum-console": "~3.1",
     }
 }
 ```
