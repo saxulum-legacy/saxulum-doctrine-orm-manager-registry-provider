@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.3,<8.0",
         "pimple/pimple": ">=2.1,<4",
         "dflydev/doctrine-orm-service-provider": "~2.0"
     },
