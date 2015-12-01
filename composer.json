@@ -19,17 +19,17 @@
         "saxulum/saxulum-console": "~2.2",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
         "silex/silex": "~1.2",
-        "symfony/doctrine-bridge": "~2.2",
-        "symfony/form": "~2.2",
-        "symfony/validator": "~2.2"
+        "symfony/doctrine-bridge": "~2.2|~3.0",
+        "symfony/form": "~2.2|~3.0",
+        "symfony/validator": "~2.2|~3.0"
     },
     "suggest": {
         "saxulum/saxulum-console": "~2.2",
         "saxulum/saxulum-doctrine-orm-commands": "~1.2",
         "silex/silex": "~1.2",
-        "symfony/doctrine-bridge": "~2.2",
-        "symfony/form": "~2.2",
-        "symfony/validator": "~2.2"
+        "symfony/doctrine-bridge": "~2.2|~3.0",
+        "symfony/form": "~2.2|~3.0",
+        "symfony/validator": "~2.2|~3.0"
     },
     "autoload": {
         "psr-4": { "Saxulum\\DoctrineOrmManagerRegistry\\": "src/" }
