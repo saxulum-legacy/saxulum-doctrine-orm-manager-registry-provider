@@ -29,7 +29,12 @@ class ManagerRegistry implements ManagerRegistryInterface
     /**
      * @var EntityManager[]
      */
-    protected $managers;
+    protected $originalManagers;
+
+    /**
+     * @var EntityManager[]
+     */
+    protected $resetManagers = [];
 
     /**
      * @var string
@@ -138,7 +143,7 @@ class ManagerRegistry implements ManagerRegistryInterface
         $this->loadManagers();
         $name = $this->validateManagerName($name);
 
-        return $this->managers[$name];
+        return isset($this->resetManagers[$name]) ? $this->resetManagers[$name] : $this->originalManagers[$name];
     }
 
     /**
@@ -148,7 +153,7 @@ class ManagerRegistry implements ManagerRegistryInterface
     protected function validateManagerName($name)
     {
         return $this->validateName(
-            $this->managers,
+            $this->originalManagers,
             $name,
             $this->getDefaultManagerName())
         ;
@@ -181,15 +186,15 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadManagers();
 
-        if ($this->managers instanceof Container) {
+        if ($this->originalManagers instanceof Container) {
             $managers = array();
             foreach ($this->getManagerNames() as $name) {
-                $managers[$name] = $this->managers[$name];
+                $managers[$name] = $this->originalManagers[$name];
             }
-            $this->managers = $managers;
+            $this->originalManagers = $managers;
         }
 
-        return $this->managers;
+        return array_replace($this->originalManagers, $this->resetManagers);
     }
 
     /**
@@ -199,30 +204,29 @@ class ManagerRegistry implements ManagerRegistryInterface
     {
         $this->loadManagers();
 
-        if ($this->managers instanceof Container) {
-            return $this->managers->keys();
+        if ($this->originalManagers instanceof Container) {
+            return $this->originalManagers->keys();
         } else {
-            return array_keys($this->managers);
+            return array_keys($this->originalManagers);
         }
     }
 
     /**
      * @param  string|null               $name
      * @return void
-     * @throws \InvalidArgumentException
      */
     public function resetManager($name = null)
     {
         $this->loadManagers();
         $name = $this->validateManagerName($name);
 
-        $this->managers[$name] = null;
+        $this->resetManagers[$name] = $this->container['orm.ems.factory'][$name]();
     }
 
     protected function loadManagers()
     {
-        if (is_null($this->managers)) {
-            $this->managers = $this->container['orm.ems'];
+        if (is_null($this->originalManagers)) {
+            $this->originalManagers = $this->container['orm.ems'];
             $this->defaultManagerName = $this->container['orm.ems.default'];
         }
     }

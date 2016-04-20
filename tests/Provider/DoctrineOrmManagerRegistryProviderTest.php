@@ -28,6 +28,45 @@ class DoctrineOrmManagerRegistryProviderTest extends \PHPUnit_Framework_TestCase
         $this->dropSchema($schemaTool, $metadatas);
     }
 
+    public function testManagerFactory()
+    {
+        $app = $this->createApplication();
+
+        /** @var EntityManager $initialEm */
+        $initialEm = $app['doctrine']->getManager();
+
+        $schemaTool = $this->getSchemaTool($initialEm);
+        $metadatas = $this->getMetadatas($initialEm);
+
+        $this->createSchema($schemaTool, $metadatas);
+        $this->dropSchema($schemaTool, $metadatas);
+
+        $app['doctrine']->resetManager();
+        /** @var EntityManager $resetEm */
+        $resetEm = $app['doctrine']->getManager();
+
+        $schemaTool = $this->getSchemaTool($resetEm);
+        $metadatas = $this->getMetadatas($resetEm);
+
+        $this->createSchema($schemaTool, $metadatas);
+        $this->dropSchema($schemaTool, $metadatas);
+
+        $this->assertNotSame($resetEm, $initialEm);
+
+        $app['doctrine']->resetManager();
+        /** @var EntityManager $reResetEm */
+        $reResetEm = $app['doctrine']->getManager();
+
+        $schemaTool = $this->getSchemaTool($reResetEm);
+        $metadatas = $this->getMetadatas($reResetEm);
+
+        $this->createSchema($schemaTool, $metadatas);
+        $this->dropSchema($schemaTool, $metadatas);
+
+        $this->assertNotSame($reResetEm, $resetEm);
+        $this->assertNotSame($reResetEm, $initialEm);
+    }
+
     public function testValidator()
     {
         $app = $this->createApplication();
