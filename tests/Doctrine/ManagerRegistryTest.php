@@ -9,7 +9,7 @@ use Saxulum\DoctrineOrmManagerRegistry\Provider\DoctrineOrmManagerRegistryProvid
 class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @return array
+     * @return Container
      */
     protected function createMockDefaultAppAndDeps()
     {
@@ -67,6 +67,17 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
             'default' => $entityManager,
         ));
 
+        $container['orm.ems.factory'] = new Container();
+        $container['orm.ems.factory']['default'] = $container['orm.ems.factory']->protect(
+            function () {
+                return $this
+                    ->getMockBuilder('Doctrine\ORM\EntityManager')
+                    ->disableOriginalConstructor()
+                    ->getMock()
+                    ;
+            }
+        );
+
         $container['orm.ems.default'] = 'default';
 
         return $container;
@@ -90,5 +101,17 @@ class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($container['doctrine']->getAliasNamespace('Test'), 'Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry');
         $this->assertInstanceOf('Doctrine\Common\Persistence\ObjectRepository', $container['doctrine']->getRepository('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
         $this->assertInstanceOf('Doctrine\ORM\EntityManager', $container['doctrine']->getManagerForClass('Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry'));
+
+        $initialManager = $container['doctrine']->getManager();
+        $container['doctrine']->resetManager();
+        $resetManager = $container['doctrine']->getManager();
+        $this->assertNotSame($resetManager, $initialManager);
+        $this->assertSame($resetManager, $container['doctrine']->getManagers()['default']);
+
+        $container['doctrine']->resetManager();
+        $reResetManager = $container['doctrine']->getManager();
+        $this->assertNotSame($reResetManager, $resetManager);
+        $this->assertNotSame($reResetManager, $initialManager);
+        $this->assertSame($reResetManager, $container['doctrine']->getManagers()['default']);
     }
 }

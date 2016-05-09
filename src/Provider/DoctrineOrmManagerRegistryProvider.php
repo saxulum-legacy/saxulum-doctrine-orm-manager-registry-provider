@@ -2,6 +2,7 @@
 
 namespace Saxulum\DoctrineOrmManagerRegistry\Provider;
 
+use Doctrine\ORM\EntityManager;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry;
@@ -32,6 +33,32 @@ class DoctrineOrmManagerRegistryProvider implements ServiceProviderInterface
         $container['doctrine'] = function ($container) {
             return new ManagerRegistry($container);
         };
+
+        if (!isset($container['orm.ems.factory'])) {
+            $container['orm.ems.factory'] = function (Container $container) {
+                $container['orm.ems.options.initializer']();
+                $factory = new Container();
+                foreach ($container['orm.ems.options'] as $name => $options) {
+                    if ($container['orm.ems.default'] === $name) {
+                        // we use shortcuts here in case the default has been overridden
+                        $config = $container['orm.em.config'];
+                    } else {
+                        $config = $container['orm.ems.config'][$name];
+                    }
+                    $factory[$name] = $factory->protect(
+                        function () use ($container, $options, $config) {
+                            return EntityManager::create(
+                                $container['dbs'][$options['connection']],
+                                $config,
+                                $container['dbs.event_manager'][$options['connection']]
+                            );
+                        }
+                    );
+                }
+                return $factory;
+            };
+        }
+
 
         if (isset($container['form.extensions']) && class_exists('Symfony\\Bridge\\Doctrine\\Form\\DoctrineOrmExtension')) {
             $container['form.extensions'] = $container->extend('form.extensions', function ($extensions, $container) {
